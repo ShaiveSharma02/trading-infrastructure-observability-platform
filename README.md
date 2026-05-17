@@ -1,48 +1,20 @@
 ````md
-# Trading Infrastructure Monitoring Platform
+# Trading Infrastructure Observability & Incident Intelligence Platform
 
-A production-style observability project that simulates trading infrastructure, order flow, FIX connectivity, Kafka event streaming, Prometheus metrics, and Grafana dashboards.
-
----
-
-# Tech Stack
-
-- Python
-- FastAPI
-- Docker
-- Kafka
-- Prometheus
-- Grafana
-- Kubernetes YAML
-- OpenTelemetry Instrumentation
+A production-style trading infrastructure monitoring and incident intelligence platform built using FastAPI, Kafka, Prometheus, Grafana, Docker, Kubernetes, and AI/ML-based anomaly detection.
 
 ---
 
 # Architecture
 
 Trading API → Kafka Topic `orders` → Order Consumer
+
 Trading API → Kafka Topic `orders` → Incident Intelligence Engine
+
 Incident Intelligence Engine → Runbook Recommendation → Incident Summary
+
 Trading API → Prometheus → Grafana Dashboard
 
-# Incident Intelligence Engine
-
-The Incident Intelligence Engine consumes Kafka order events and performs:
-
-- Failed order detection
-- Latency anomaly detection
-- Incident classification
-- Runbook recommendation
-- AI-style incident summary generation
-
-Example output:
-
-```text
-INCIDENT DETECTED:
-Incident Type: Order Failure
-Severity: Medium
-Recommended Runbook: runbooks/order-failures.md
-```
 ---
 
 # Features
@@ -63,82 +35,64 @@ Recommended Runbook: runbooks/order-failures.md
 
 ---
 
-# Run Locally
+# Tech Stack
 
-```bash
-docker compose up --build
-````
-
-Open:
-
-```text
-Trading API: http://127.0.0.1:8000
-Prometheus: http://127.0.0.1:9090
-Grafana: http://127.0.0.1:3000
-```
+- Python
+- FastAPI
+- Kafka
+- Prometheus
+- Grafana
+- Docker
+- Kubernetes
+- Scikit-learn
+- NumPy
 
 ---
 
 # API Endpoints
 
-```text
-/health
-/place-order
-/metrics
-/simulate-fix-disconnect
-/simulate-fix-reconnect
-/simulate-market-data-down
-/simulate-market-data-up
-```
-
----
-
-# Kafka Flow
-
-Every generated order is published to Kafka topic:
-
-```text
-orders
-```
-
-Consumer logs can be viewed using:
-
-```bash
-docker logs -f order-consumer
-```
+| Endpoint | Description |
+|---|---|
+| `/health` | Application health |
+| `/place-order` | Generate simulated trading order |
+| `/metrics` | Prometheus metrics |
+| `/simulate-fix-disconnect` | Simulate FIX disconnect |
+| `/simulate-fix-reconnect` | Restore FIX connection |
+| `/simulate-market-data-down` | Simulate market data outage |
+| `/simulate-market-data-up` | Restore market data |
 
 ---
 
 # Prometheus Metrics
 
-```text
-trading_orders_total
-trading_failed_orders_total
-trading_order_latency_seconds
-fix_session_status
-market_data_status
-```
+- `trading_orders_total`
+- `trading_failed_orders_total`
+- `trading_order_latency_seconds`
+- `fix_session_status`
+- `market_data_status`
 
 ---
 
-# Grafana Dashboard
+# Incident Intelligence Engine
 
-Dashboard includes:
+The Incident Intelligence Engine consumes Kafka order events and performs:
 
-* Total trading orders
-* Failed orders
-* FIX session status
-* Market data status
-* P95 order latency
+- Failed order detection
+- Latency anomaly detection
+- Incident classification
+- Runbook recommendation
+- AI-style incident summary generation
 
----
-
-# Kubernetes
-
-Kubernetes manifests are available in:
+Example output:
 
 ```text
-k8s/
+INCIDENT DETECTED:
+
+Incident Type: Order Failure
+
+Severity: Medium
+
+Recommended Runbook: runbooks/order-failures.md
 ```
 
 ---
@@ -187,6 +141,61 @@ k8s/
 
 ---
 
+# Local Setup
+
+## Clone Repository
+
+```bash
+git clone https://github.com/ShaiveSharma02/trading-infrastructure-observability-platform.git
+cd trading-infrastructure-observability-platform
+```
+
+---
+
+## Start Platform
+
+```bash
+docker compose up --build
+```
+
+---
+
+# Access URLs
+
+| Service | URL |
+|---|---|
+| Trading API | http://127.0.0.1:8000 |
+| Prometheus | http://127.0.0.1:9090 |
+| Grafana | http://127.0.0.1:3000 |
+
+---
+
+# Kafka Topic
+
+Orders are streamed to Kafka topic:
+
+```text
+orders
+```
+
+---
+
+# Kafka Consumer Logs
+
+```bash
+docker logs -f order-consumer
+```
+
+---
+
+# Incident Engine Logs
+
+```bash
+docker logs -f incident-engine
+```
+
+---
+
 # Screenshots
 
 ## Grafana Dashboard
@@ -205,15 +214,37 @@ k8s/
 
 ![Prometheus Metrics](screenshots/prometheus-metrics.png)
 
+---
+
 ## Incident Intelligence Engine
 
 ![Incident Engine](screenshots/incident-engine.png)
 
 ---
 
+# Kubernetes
+
+Kubernetes deployment manifests are available in:
+
+```text
+k8s/
+```
+
+---
+
+# Future Improvements
+
+- Alertmanager integration
+- Loki log aggregation
+- Jaeger distributed tracing
+- CI/CD using GitHub Actions
+- Helm chart deployment
+- WebSocket market data simulation
+- Automated remediation workflows
+
+---
+
 # Author
 
 Shaive Sharma
-
-```
-```
+````
