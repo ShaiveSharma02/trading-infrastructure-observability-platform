@@ -39,11 +39,8 @@ Example output:
 
 ```text
 INCIDENT DETECTED:
-
 Incident Type: Order Failure
-
 Severity: Medium
-
 Recommended Runbook: runbooks/order-failures.md
 ```
 ---
