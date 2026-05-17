@@ -22,6 +22,28 @@ A production-style observability project that simulates trading infrastructure, 
 
 Trading API → Kafka Topic `orders` → Order Consumer  
 Trading API → Prometheus → Grafana Dashboard
+Trading API → Kafka Topic `orders` → Order Consumer  
+Trading API → Kafka Topic `orders` → Incident Intelligence Engine  
+Incident Engine → Runbook Recommendation → Incident Summary  
+Trading API → Prometheus → Grafana Dashboard
+
+# Incident Intelligence Engine
+
+The incident engine consumes order events from Kafka and detects:
+
+- Failed orders
+- High latency anomalies
+- Potential production incidents
+
+It generates an incident summary and recommends a relevant runbook.
+
+Example:
+
+```text
+INCIDENT DETECTED:
+Incident Type: Order Failure
+Severity: Medium
+Recommended Runbook: runbooks/order-failures.md
 
 ---
 
@@ -36,6 +58,10 @@ Trading API → Prometheus → Grafana Dashboard
 - Kafka producer and consumer
 - Docker Compose setup
 - Kubernetes deployment files
+- Incident intelligence engine for failed orders and latency anomalies
+- ML-based latency anomaly detection using Isolation Forest
+- Runbook recommendation for production support scenarios
+- AI-style incident summary generation
 
 ---
 
@@ -165,6 +191,10 @@ k8s/
 ## Prometheus Metrics
 
 ![Prometheus Metrics](screenshots/prometheus-metrics.png)
+
+## Incident Intelligence Engine
+
+![Incident Engine](screenshots/incident-engine.png)
 
 ---
 
