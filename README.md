@@ -161,11 +161,21 @@ k8s/
 
 # Screenshots
 
-Add:
+## Grafana Dashboard
 
-* Grafana dashboard screenshot
-* Kafka consumer logs screenshot
-* Prometheus metrics screenshot
+![Grafana Dashboard](screenshots/grafana-dashboard.png)
+
+---
+
+## Kafka Consumer Logs
+
+![Kafka Consumer](screenshots/kafka-consumer.png)
+
+---
+
+## Prometheus Metrics
+
+![Prometheus Metrics](screenshots/prometheus-metrics.png)
 
 ---
 
