@@ -148,17 +148,6 @@ k8s/
 
 ---
 
-# Future Enhancements
-
-* Alertmanager integration
-* Loki log aggregation
-* Jaeger tracing UI
-* Kubernetes deployment using Minikube
-* Auto-remediation workflows
-* CI/CD using GitHub Actions
-
----
-
 # Screenshots
 
 ## Grafana Dashboard
