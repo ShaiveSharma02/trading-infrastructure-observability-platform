@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trading-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: trading-api
+  template:
+    metadata:
+      labels:
+        app: trading-api
+    spec:
+      containers:
+        - name: trading-api
+          image: trading-api:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: KAFKA_BOOTSTRAP
+              value: kafka:9092

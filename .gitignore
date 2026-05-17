@@ -1,0 +1,18 @@
+venv/
+__pycache__/
+*.pyc
+.env
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Docker
+*.pid
+
+# Python
+.pytest_cache/
+.mypy_cache/
