@@ -38,7 +38,7 @@ The Incident Intelligence Engine consumes Kafka order events and performs:
 Example output:
 
 ```
-INCIDENT DETECT:
+INCIDENT DETECTED:
 {
   "incident_type": "Order Failure",
   "severity": "Medium",
