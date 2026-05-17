@@ -20,30 +20,29 @@ A production-style observability project that simulates trading infrastructure, 
 
 # Architecture
 
-Trading API → Kafka Topic `orders` → Order Consumer  
-Trading API → Prometheus → Grafana Dashboard
-Trading API → Kafka Topic `orders` → Order Consumer  
-Trading API → Kafka Topic `orders` → Incident Intelligence Engine  
-Incident Engine → Runbook Recommendation → Incident Summary  
+Trading API → Kafka Topic `orders` → Order Consumer
+Trading API → Kafka Topic `orders` → Incident Intelligence Engine
+Incident Intelligence Engine → Runbook Recommendation → Incident Summary
 Trading API → Prometheus → Grafana Dashboard
 
 # Incident Intelligence Engine
 
-The incident engine consumes order events from Kafka and detects:
+The Incident Intelligence Engine consumes Kafka order events and performs:
 
-- Failed orders
-- High latency anomalies
-- Potential production incidents
+- Failed order detection
+- Latency anomaly detection
+- Incident classification
+- Runbook recommendation
+- AI-style incident summary generation
 
-It generates an incident summary and recommends a relevant runbook.
-
-Example:
+Example output:
 
 ```text
 INCIDENT DETECTED:
 Incident Type: Order Failure
 Severity: Medium
 Recommended Runbook: runbooks/order-failures.md
+```
 
 ---
 
@@ -157,19 +156,34 @@ k8s/
 │   ├── Dockerfile
 │   ├── consumer.py
 │   └── requirements.txt
-├── docker-compose.yml
+├── incident-engine
+│   ├── Dockerfile
+│   ├── incident_engine.py
+│   └── requirements.txt
+├── runbooks
+│   ├── fix-disconnect.md
+│   ├── high-latency.md
+│   ├── market-data-down.md
+│   └── order-failures.md
+├── screenshots
+│   ├── grafana-dashboard.png
+│   ├── kafka-consumer.png
+│   ├── prometheus-metrics.png
+│   └── incident-engine.png
 ├── docs
 │   └── kafka-flow.md
 ├── grafana
+├── kafka
 ├── k8s
 │   ├── grafana-deployment.yml
 │   ├── prometheus-deployment.yml
 │   ├── trading-api-deployment.yml
 │   └── trading-api-service.yml
-├── kafka
 ├── prometheus
 │   └── prometheus.yml
-└── README.md
+├── docker-compose.yml
+├── README.md
+└── .gitignore
 ```
 
 ---
